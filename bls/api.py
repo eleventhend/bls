@@ -30,9 +30,9 @@ except ImportError: #python2
 
 import pandas as pd
 
-BASE_URL = "http://api.bls.gov/publicAPI/v1/timeseries/data/"
+BASE_URL = "http://api.bls.gov/publicAPI/v2/timeseries/data/"
 
-def get_series(series, startyear=None, endyear=None):
+def get_series(series, startyear=None, endyear=None, api_key):
     """
     Retrieve one or more series from BLS. Note that only ten years may be
     retrieved at a time
@@ -59,6 +59,7 @@ def get_series(series, startyear=None, endyear=None):
     data = json.dumps({"seriesid": series,
                        "startyear": str(startyear),
                        "endyear": str(endyear),
+                       "registrationKey": api_key,
                        }).encode()
     headers = {"Content-type": "application/json"}
     resp = urlopen(Request(BASE_URL, data=data, headers=headers)).read()
