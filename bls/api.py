@@ -32,7 +32,7 @@ import pandas as pd
 
 BASE_URL = "http://api.bls.gov/publicAPI/v2/timeseries/data/"
 
-def get_series(series, startyear=None, endyear=None, api_key):
+def get_series(series, api_key, startyear=None, endyear=None):
     """
     Retrieve one or more series from BLS. Note that only ten years may be
     retrieved at a time
